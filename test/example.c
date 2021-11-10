@@ -1,6 +1,7 @@
 #include "vector.h"
 
-int main(int argc, const char* argv[]) {
+int main()
+{
 	Vector vector;
 	int x, y, sum;
 
@@ -13,8 +14,8 @@ int main(int argc, const char* argv[]) {
 	vector_insert(&vector, 0, &y);
 	vector_assign(&vector, 0, &y);
 
-	x = *(int*)vector_get(&vector, 0);
-	y = *(int*)vector_back(&vector);
+	x = *(int *)vector_get(&vector, 0);
+	y = *(int *)vector_back(&vector);
 	x = VECTOR_GET_AS(int, &vector, 1);
 
 	vector_erase(&vector, 1);
@@ -22,13 +23,15 @@ int main(int argc, const char* argv[]) {
 	/* Iterator support */
 	Iterator iterator = vector_begin(&vector);
 	Iterator last = vector_end(&vector);
-	for (; !iterator_equals(&iterator, &last); iterator_increment(&iterator)) {
-		*(int*)iterator_get(&iterator) += 1;
+	for (; !iterator_equals(&iterator, &last); iterator_increment(&iterator))
+	{
+		*(int *)iterator_get(&iterator) += 1;
 	}
 
 	/* Or just use pretty macros */
 	sum = 0;
-	VECTOR_FOR_EACH(&vector, i) {
+	VECTOR_FOR_EACH(&vector, i)
+	{
 		sum += ITERATOR_GET_AS(int, &i);
 	}
 

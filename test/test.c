@@ -3,7 +3,8 @@
 
 #include "vector.h"
 
-int main(int argc, const char* argv[]) {
+int main()
+{
 	int i;
 
 	printf("TESTING SETUP ...\n");
@@ -14,7 +15,8 @@ int main(int argc, const char* argv[]) {
 
 	printf("TESTING INSERT ...\n");
 
-	for (i = 0; i < 1000; ++i) {
+	for (i = 0; i < 1000; ++i)
+	{
 		assert(vector_insert(&vector, 0, &i) == VECTOR_SUCCESS);
 		assert(VECTOR_GET_AS(int, &vector, 0) == i);
 		assert(vector.size == i + 1);
@@ -26,7 +28,8 @@ int main(int argc, const char* argv[]) {
 
 	printf("TESTING ASSIGNMENT ...\n");
 
-	for (i = 0; i < vector.size; ++i) {
+	for (i = 0; i < vector.size; ++i)
+	{
 		int value = 666;
 		assert(vector_assign(&vector, i, &value) == VECTOR_SUCCESS);
 	}
@@ -39,7 +42,8 @@ int main(int argc, const char* argv[]) {
 	iterator = vector_iterator(&vector, 1);
 	assert(iterator_index(&vector, &iterator) == 1);
 
-	VECTOR_FOR_EACH(&vector, iterator) {
+	VECTOR_FOR_EACH(&vector, iterator)
+	{
 		assert(ITERATOR_GET_AS(int, &iterator) == 666);
 	}
 
@@ -49,7 +53,8 @@ int main(int argc, const char* argv[]) {
 	assert(iterator_erase(&vector, &iterator) == VECTOR_SUCCESS);
 
 	size_t expected_size = vector.size;
-	while (!vector_is_empty(&vector)) {
+	while (!vector_is_empty(&vector))
+	{
 		assert(vector_erase(&vector, 0) == VECTOR_SUCCESS);
 		assert(vector.size == --expected_size);
 	}
